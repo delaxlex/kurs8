@@ -1,8 +1,8 @@
 // ============================================
 // НАСТРОЙКИ
 // ============================================
-const GIST_ID = 'cab13aea931be6989a1c2ac9fa48717a';
-const GIST_FILENAME = 'status.txt';
+const GIST_ID = '80781749dc4028146d5876ba3e15c665';
+const GIST_FILENAME = 'status8.txt';
 const SESSION_DURATION = 2 * 60 * 60 * 1000; // 2 часа
 
 // ============================================
