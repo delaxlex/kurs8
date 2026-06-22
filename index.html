@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Вход на сайт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Добро пожаловать</h1>
+            <p class="subtitle">Введите вашу фамилию для входа</p>
+            
+            <div class="form-group">
+                <input type="text" id="surnameInput" placeholder="Введите фамилию" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <button id="loginBtn">Войти</button>
+            </div>
+            
+            <div id="message" class="message hidden"></div>
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Проверка доступа...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptReg.js"></script>
+</body>
+</html>

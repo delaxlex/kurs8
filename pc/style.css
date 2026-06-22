@@ -1,0 +1,752 @@
+/* ============================================
+   ОБЩИЕ СТИЛИ
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f5f0eb;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================
+   ГЛАВНЫЙ КОНТЕЙНЕР
+   ============================================ */
+.app {
+    display: flex;
+    height: 100vh;
+    gap: 0;
+    background: #f5f0eb;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================
+   ЛЕВАЯ ПАНЕЛЬ (30%)
+   ============================================ */
+.sidebar {
+    width: 30%;
+    min-width: 280px;
+    max-width: 400px;
+    background: linear-gradient(180deg, #4a148c 0%, #6a1b9a 40%, #7b1fa2 100%);
+    border-radius: 0;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 32px rgba(74, 20, 140, 0.2);
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-header h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.sidebar-header .subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ============================================
+   МЕНЮ КНОПОК
+   ============================================ */
+.menu {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.menu-item {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item .icon {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.menu-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+}
+
+.menu-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 3px;
+    background: #ce93d8;
+    border-radius: 0 4px 4px 0;
+}
+
+/* ============================================
+   НИЖНЯЯ ЧАСТЬ ПАНЕЛИ
+   ============================================ */
+.sidebar-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.logout-btn:hover {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.3);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(244, 67, 54, 0.2);
+}
+
+/* ============================================
+   ПРАВАЯ ПАНЕЛЬ (70%)
+   ============================================ */
+.content {
+    flex: 1;
+    background: #faf6f0;
+    background: linear-gradient(135deg, #faf6f0 0%, #f5f0e8 100%);
+    border-radius: 0;
+    padding: 32px 40px;
+    overflow-y: auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    position: relative;
+    height: 100vh;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(74, 20, 140, 0.15);
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 20, 140, 0.25);
+}
+
+/* ============================================
+   БЛОКИ С УРОКАМИ
+   ============================================ */
+.lesson-content {
+    display: none;
+    animation: fadeSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.lesson-content.active {
+    display: block;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-content h1 {
+    font-size: 32px;
+    color: #2d1b4e;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(74, 20, 140, 0.1);
+}
+
+.lesson-content .content-body {
+    color: #2d2d2d;
+}
+
+.lesson-content .content-body h2 {
+    font-size: 24px;
+    color: #3d2a5e;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+.lesson-content .content-body h3 {
+    font-size: 20px;
+    color: #3d2a5e;
+    margin-bottom: 12px;
+    margin-top: 6px;
+}
+
+.lesson-content .content-body p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.lesson-content .content-body ul {
+    margin: 16px 0 20px 24px;
+    color: #444;
+    line-height: 1.8;
+}
+
+.lesson-content .content-body ul li {
+    margin-bottom: 8px;
+}
+
+/* ============================================
+   ИНФОРМАЦИОННЫЕ БЛОКИ
+   ============================================ */
+.info-box {
+    background: rgba(74, 20, 140, 0.06);
+    border-left: 4px solid #6a1b9a;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #2d1b4e;
+    font-size: 15px;
+}
+
+.info-box strong {
+    color: #4a148c;
+}
+
+/* ============================================
+   ИНФОРМАЦИОННЫЙ БЛОК С КАРТИНКОЙ
+   ============================================ */
+.info-block {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background: #faf6f0;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 20px 0 24px 0;
+    border: 1px solid rgba(74, 20, 140, 0.06);
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-text-item {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 16px;
+}
+
+.info-text p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.info-not-included {
+    margin: 16px 0 12px 0;
+}
+
+.not-included-title {
+    font-size: 16px;
+    color: #2d1b4e;
+    margin-bottom: 6px;
+}
+
+.not-included-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.not-included-list li {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.8;
+    padding-left: 24px;
+    position: relative;
+}
+
+.not-included-list li::before {
+    content: '☑';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #6a1b9a;
+}
+
+.comfort-text {
+    font-size: 15px;
+    color: #2d1b4e;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+.info-image {
+    flex-shrink: 0;
+    width: 240px;
+    height: auto;
+}
+
+.info-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   КАРТИНКА СЛЕВА, ТЕКСТ СПРАВА (ОТ ВЕРХНЕГО КРАЯ)
+   ============================================ */
+
+.image-text-row {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;  /* ← Текст от верхнего края картинки */
+    margin: 8px 0 24px 0;
+}
+
+.image-left-col {
+    flex-shrink: 0;
+    width: 300px;  /* ← Задайте нужный размер */
+}
+
+.image-left-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.image-left-col img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 32px rgba(74, 20, 140, 0.15);
+}
+
+.text-right-col {
+    flex: 1;
+    padding-top: 0;  /* ← Убедитесь, что нет отступа сверху */
+}
+
+.text-right-col p {
+    font-size: 20px !important;
+    line-height: 1.8;
+    color: #444;
+    margin: 0 !important;
+}
+
+.les1 {
+    margin-bottom: 4px !important;
+}
+
+/* ============================================
+   ЛЕВАЯ ПАНЕЛЬ (30%) С АНИМАЦИЕЙ
+   ============================================ */
+.sidebar {
+    width: 30%;
+    min-width: 280px;
+    max-width: 400px;
+    background: linear-gradient(180deg, #4a148c 0%, #6a1b9a 40%, #7b1fa2 100%);
+    border-radius: 0;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 32px rgba(74, 20, 140, 0.2);
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Скрытое состояние с анимацией */
+.sidebar.hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0;
+    transform: translateX(-30px);
+    overflow: hidden;
+    border: none;
+    flex: 0 0 0;
+    pointer-events: none;
+}
+
+.sidebar.hidden::before {
+    opacity: 0;
+}
+
+.sidebar.hidden .sidebar-header,
+.sidebar.hidden .menu,
+.sidebar.hidden .sidebar-footer,
+.sidebar.hidden .sidebar-close {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Анимация для внутренних элементов при скрытии */
+.sidebar .sidebar-header,
+.sidebar .menu,
+.sidebar .sidebar-footer,
+.sidebar .sidebar-close {
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   КНОПКА ОТКРЫТИЯ (ПОВЕРХ ВСЕГО)
+   ============================================ */
+.sidebar-open {
+    position: fixed;
+    top: 16px;
+    left: 16px;  /* ← Изменено с right на left */
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    background: #6a1b9a;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar-open:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(106, 27, 154, 0.5);
+    background: #7b1fa2;
+}
+
+.sidebar-open:active {
+    transform: scale(0.95);
+}
+
+.sidebar-open.visible {
+    display: flex;
+    animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar-open.hidden-btn {
+    animation: fadeOutScale 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.sidebar-open svg {
+    width: 22px;
+    height: 22px;
+}
+
+
+/* ============================================
+   КНОПКА ЗАКРЫТИЯ ВНУТРИ ПАНЕЛИ
+   ============================================ */
+.sidebar-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-close svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes fadeOutScale {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.7) rotate(10deg);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+}
+
+/* ============================================
+   АДАПТИВ ДЛЯ МОБИЛЬНЫХ
+   ============================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(0);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+        border-radius: 0;
+        box-shadow: 4px 0 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar.hidden {
+        transform: translateX(-100%);
+        opacity: 0;
+        width: 85% !important;
+        min-width: 0 !important;
+        max-width: 320px !important;
+        padding: 24px 20px !important;
+        display: flex;
+        pointer-events: none;
+    }
+
+    .sidebar.hidden .sidebar-header,
+    .sidebar.hidden .menu,
+    .sidebar.hidden .sidebar-footer,
+    .sidebar.hidden .sidebar-close {
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+    }
+
+    .sidebar-open {
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .sidebar-open svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Оверлей для мобильных */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+/* ============================================
+   ДЛЯ ДЕСКТОПОВ - ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ
+   ============================================ */
+@media (min-width: 769px) {
+    .sidebar.hidden {
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+        opacity: 0;
+        margin: 0;
+        border: none;
+        flex: 0 0 0;
+        transform: translateX(-30px);
+    }
+
+    .sidebar.hidden .sidebar-header,
+    .sidebar.hidden .menu,
+    .sidebar.hidden .sidebar-footer,
+    .sidebar.hidden .sidebar-close {
+        display: none;
+    }
+
+    .sidebar:not(.hidden) {
+        animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+}
+
+hr {
+    height: 4px; 
+    border: none; 
+    background-color: gray;
+}
+
+
+li {
+    margin-left: 20px;
+    margin-bottom: 8px;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.lesNum{
+    margin-bottom: 10px;
+    margin-top: 0px;
+}

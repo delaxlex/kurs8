@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Образовательный портал</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- БЛОК С ЗАЩИТОЙ (показывается если доступ запрещен) -->
+    <div id="blocked-page" style="display: none;">
+        <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; padding: 20px; text-align: center; background: #f5f0eb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+            <div
+                style="max-width: 500px; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h1 style="color: #721c24; font-size: 48px; margin-bottom: 16px;">🚫</h1>
+                <h2 style="color: #721c24; margin-bottom: 16px;">Доступ запрещен</h2>
+                <p id="blocked-message" style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                    Пожалуйста, пройдите авторизацию.</p>
+                <a href="../index.html"
+                    style="display: inline-block; padding: 12px 32px; background: #6a1b9a; color: white; text-decoration: none; border-radius: 12px; font-weight: 500; transition: all 0.3s ease;">Вернуться
+                    на главную</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (показывается если доступ разрешен) -->
+    <div id="app-content" style="display: none;">
+        <div class="app">
+            <!-- Левая панель с уроками -->
+            <nav class="sidebar" id="sidebar">
+                <!-- Кнопка закрытия панели -->
+                <button class="sidebar-toggle sidebar-close" id="sidebarClose" aria-label="Закрыть панель">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <div class="sidebar-header">
+                    <h2>📚 Уроки</h2>
+                    <p class="subtitle">Выберите раздел</p>
+                </div>
+
+                <div class="menu">
+                    <button class="menu-item active" data-lesson="0">
+                        <span class="icon">📄</span>
+                        Титульный лист
+                    </button>
+                    <button class="menu-item" data-lesson="1">Урок 1</button>
+                    <button class="menu-item" data-lesson="2">Урок 2</button>
+                    <button class="menu-item" data-lesson="3">Урок 3</button>
+                    <button class="menu-item" data-lesson="4">Урок 4</button>
+                    <button class="menu-item" data-lesson="5">Урок 5</button>
+                    <button class="menu-item" data-lesson="6">Урок 6</button>
+                    <button class="menu-item" data-lesson="7">Урок 7</button>
+                    <button class="menu-item" data-lesson="8">Урок 8</button>
+                                   </div>
+
+                <div class="sidebar-footer">
+                    <button class="logout-btn" onclick="logout()">🚪 Выйти</button>
+                </div>
+            </nav>
+
+            <!-- Правая панель с контентом -->
+            <main class="content" id="mainContent">
+                <!-- Кнопка открытия панели (показывается когда панель скрыта) -->
+                <button class="sidebar-toggle sidebar-open" id="sidebarOpen" aria-label="Открыть панель">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <!-- Блоки с материалами -->
+                <div class="lesson-content" id="lesson-0">
+                    <h1>📄 Титульный лист</h1>
+                    <div class="content-body">
+                        <h2>Индивидуальный курс онлайн: "Бухгалтер с нуля до главного + 1С-8"</h2>
+
+                        <!-- ИНФОРМАЦИОННЫЙ БЛОК С КАРТИНКОЙ -->
+                        <div class="info-block">
+                            <div class="info-text">
+                                <p class="info-text-item">Здесь можно задавать вопросы преподавателю по темам и
+                                    заданиям, обмениваться опытом и обсуждать вопросы по теме курса, сообщать о
+                                    возникших проблемах при практической работе. Задавать дополнительные вопросы.</p>
+
+                                <p>Обучение идет по программе на примере сквозной задачи.</p>
+                                <p>👨 Доступ к программе 1С круглосуточно, поэтому Вы можете работать 24 часа в сутки.
+                                </p>
+                                <p>Видеоуроки будут доступны 3 месяца. На электронную почту Вам высланы конспекты по
+                                    темам.</p>
+                                <p>Преподаватель отвечает на вопросы по темам курса и на дополнительные вопросы.</p>
+                                <p>График ответов преподавателя: пн-пт, 9:00-20:00. Вопросы можно писать в Viber по мере
+                                    поступления.</p>
+                                <p>Ответы преподаватель дает в рабочие дни.</p>
+
+                                <div class="info-not-included">
+                                    <p class="not-included-title"><strong>Что не входит в курс:</strong></p>
+                                    <ul class="not-included-list">
+                                        <li>Преподаватель не помогает Вам в работе Ваших организаций:</li>
+                                        <li>☑ закрывать декларации и отчетность;</li>
+                                        <li>☑ рассчитывать больничные, отпускные, зарплату, налоги;</li>
+                                        <li>☑ работать в Ваших программах 1С.</li>
+                                    </ul>
+                                </div>
+
+                                <p class="comfort-text">Мы хотим, чтобы вам было комфортно общаться и обучаться.</p>
+
+
+                            </div>
+
+                            <div class="info-image">
+                                <img src="profile.jpg" alt="Преподаватель">
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>📌 Всего уроков:</strong> 14
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-1">
+                    <h1>📚 Урок 1</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Введение.</h2>
+                        <h3 style="color: #1e4b00; font-size: 36px; margin-bottom: 16px;"> Понятие бухгалтерского учета,
+                            проводки. Расчеты с учредителями. Уставный капитал.</h3>
+                        <div class="les1">
+
+                            <p>Ориентируйтесь по инструкции и делайте всё по ним. По всем вопросам пишите сюда, я всегда
+                                рядом.</p>
+                            <p> В понедельник, среда и пятница я на занятиях до 15-00 и не сразу смогу ответить, но вы
+                                не переживайте, как освобождаюсь,
+                                сразу отвечаю, поэтому пишите в любое время.</p>
+                            <p>Сейчас буду сбрасывать информацию для работы, к некоторым урокам будет дополнительная
+                                информация,
+                                не забывайте ее читать.</p>
+                            <p> Выполнять будите, когда будет у Вас время, но за неделю надо успевать сделать урока
+                                два-три.</p>
+                            <p>Видео Уроки будут состоять из несколько частей, например 1-1, 1-2 и так далее. Делаем всё
+                                по возрастанию.</p>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1scUR7OpqvZiw3YoZQp2AtQ9BzzQKiU8k/view"
+                                        target="_blank">
+                                        <img src="pictures/1-1.png" alt="урок 1-1">
+                                    </a>
+                                                                    </div>
+                                <div class="text-right-col">
+                                    <p>Теория бухучета</p>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1R4YIk7aO7B6bHS-Hqjo0nMA4OkUD067t/view"
+                                        target="_blank">
+                                        <img src="pictures/1-2.png" alt="урок 1-2">
+                                    </a>
+<p style="font-size: 20px !important; ">Практика в программе 1С. Делаем все, как на
+                                        видео</p>
+                                </div>
+                                <div class="text-right-col">
+<p> На эл.почту Вам отправили пароли и видео, как подключить удаленный доступ к
+                                        программе 1С</p>
+<p style="color: red; ">С урока 1-2, смотрим и делаем всё так же, как на видео.
+                                        Ставим то же число и месяц, как на видео, но год у нас всегда будет текущий
+                                        2026г</p>
+<p>По видео мы всегда будем проверять, как должно быть, если у Вас все так же,
+                                        можете приступать к следующему видео. </p>
+<p> Я периодически буду заходить к Вам в программу 1С и давать отчёт о Вашей
+                                        проделанной работе. Надо будет помощь, сразу зовите.</p>
+
+
+
+                                                                    </div>
+                            </div>
+		
+
+                            <hr>
+
+                            <div class="image-text-row">
+                                <div class="image-left-col">
+                                    <a href="https://drive.google.com/file/d/1Tri1uYamEheQux92Gq119Y45MyG7xJGl/view"
+                                        target="_blank">
+                                        <img src="pictures/1-3.png" alt="урок 1-3">
+                                    </a>
+                                    <p>Самостоятельная работа</p>
+                                </div>
+                                <div class="text-right-col">
+                                    <p>Урок 1-3 самостоятельная работа, первое задание делаем вместе, потом пытаемся
+                                        сделать самостоятельно, затем проверяем.</p>
+                                    <p>Заходим на скаченные уроки с эл.почты: урок 1 - Теория - Двойная запись и в самом
+                                        конце практическая работа и там её заполняем, в 1С делать этого не надо.</p>
+
+                                </div>
+
+
+
+                            </div>
+                            <hr>
+                            <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                            <p>Вы закончили первый урок, если у Вас так же, как у нас, переходите смело ко второму
+                                уроку. </p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-2">
+                    <h1>📚 Урок 2</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет основных средств. Учет
+                            нематериальных активов.</h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1kMENSVZaJtMH1QiGY15RTLGBgt9lrv-n/view"
+                                    target="_blank">
+                                    <img src="pictures/2-1.png" alt="урок 2-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="font-size: 20px !important; ">В уроке 2-2 контрагент автоматически сейчас не
+                                    выставляется,
+                                    поэтому наименование организации пишем руками, можно сокращать, см.картинку
+                                </p>
+                                <a href="https://drive.google.com/file/d/1KmCD5_StJWXJPHMbPO5TP2Zdtcgd6qvS/view?usp=drive_link"
+                                    target="_blank" style="font-size: 20px;"> рис1</a>
+                                <a style="font-size: 20px;"> Адрес пишите просто г. Минск.В учебной программе можем себе
+                                    позволить.</a>
+                                <p> <a href="https://drive.google.com/file/d/17YzBGA8XB5moJMAIAst446vECSx4imZr/view?usp=sharing"
+                                        target="_blank" style="font-size: 20px;">рис2</a></p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p style="margin-top: 20px;">Дальше по порядку</p>
+                        <div style="display: flex; gap: 100px; flex-wrap: wrap; margin: 10px 0;">
+
+                            <a href="https://drive.google.com/file/d/1nIbMb4AJyilUWZaXcSs-uUegj8_K4J2D/view"
+                                target="_blank" style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-2.png" alt="урок 2-2"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                            <a href="https://drive.google.com/file/d/1hKy8C9VDg0Wymzup9RHKqcx3_1_HAhKE/view"
+                                target="_blank" style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-3.png" alt="урок 2-3"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                            <a href="https://drive.google.com/file/d/1vT8SRIzQDbyW8n-DrE_bxkRYa-uNFDrb/view"
+                                target="_blank" style="display: block; flex: 0 0 auto;">
+                                <img src="pictures/2-4.png" alt="урок 2-4"
+                                    style="width: 300px; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                    <p style="font-size: 20px;">Вы закончили второй урок, если у Вас так же, как у нас переходите смело
+                        к следующему уроку.</p>
+                </div>
+
+
+                <div class="lesson-content" id="lesson-3">
+                    <h1>📚 Урок 3</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Учет товарно-материальных
+                            ценностей:
+                            учет сырья, учет инвентаря и хоз. принадлежностей, учет спецодежды, учет топлива, учет
+                            прочих материалов, учет БСО.
+                        </h2>
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/14XaDMTZEgXMIbRC8JRq2toKZevT29s-k/view"
+                                    target="_blank">
+                                    <img src="pictures/3-1.png" alt="урок 3-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>
+                                    С 1 июля 2025г. НСБУ № 88 изменился учет БСО. Списывать с баланса будем только по
+                                    факту использованные ТН и ТТН.
+                                    На забалансовом счете 006 будем учитывать только испорченные БСО (можно открыть
+                                    новый субсчет к 006 счету - "испорченные БСО").
+                                    ИМНС советует все испорченные бланки до 01.07.25г. отразить на 006 счете.
+                                    Испорченные БСО мы сможем уничтожить только через месяц после проверки со стороны
+                                    ИМНС.
+                                    По новому правилу надо вести реестры использованных и испорченных(анулированных)
+                                    бланков. Образцы реестров смотрите в 3уроке - Теория - БСО.
+                                    <p>Срок и условия хранения испорченных бланков (документов) с определенной степенью защиты Национальным стандартом № 88 не установлены.
+                                      Срок хранения таких документов и дел целесообразно установить на заседании экспертной комиссии организации </p>
+                                    <a href="https://drive.google.com/file/d/1hIsTj_hrMIRzwIaWnX2TolhfjjDHyJJ0/view?usp=sharing"
+                                        target="_blank" style="font-size: 20px;"> </p> <p>Алгоритм уничтожения бланков строгой
+                                        отчетности</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/16gXzWJ4DXcjJLliuZrb65dp8tisP4cGa/view"
+                                    target="_blank">
+                                    <img src="pictures/3-2.png" alt="урок 3-2">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1RP63n731xoN8kbGxS922Z5X2IMQci64z/view"
+                                    target="_blank">
+                                    <img src="pictures/3-3.png" alt="урок 3-3">
+                                </a>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили третий урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-4">
+                    <h1>📚 Урок 4</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;"> Учет товара: поступление,
+                            оценка, реализацият</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Учет услуг: поступление,
+                            реализация</h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/10INj_taojp6ecNQwdZXlPXxYo3DvEzH_/view"
+                                    target="_blank">
+                                    <img src="pictures/4-1.png" alt="урок 4-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: rgb(107, 41, 41); font-size: 20px !important;"> С15.04.25 принцип
+                                    расчета по ценообразованию
+                                    другой.</p>
+                                <p>
+                                    Вступило новое постановление 713(6), с уменьшенным списком товара.
+                                    1 колонка - процент на импортируемый потребительский товар.
+                                    Этот размер надбавки делится между всеми звеньями торговли (импортером, оптом и
+                                    розницей).
+                                    2 колонка - процент на производимые в Республике Беларусь потребительские товары.
+                                    Этот размер надбавки делится между звеньями торговли (оптом и розницей).
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1ztyS5d7TApDtqQdavmubyogD7rGQ94rH/view"
+                                    target="_blank">
+                                    <img src="pictures/4-2.png" alt="урок 4-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red; font-size: 20px !important;"> Инструкция к уроку 4-3: когда будите
+                                    делать счёт на реализацию услуг,
+                                    надо в левом вверхнем углу зайти в "Цены и валюта" и выставить тип цен "Оптовая".
+                                   Иначе НДС будет считать не сверху, а в том числе.
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/18K26MND0z_mZEU7lM3ak855G9TSeVrKp/view"
+                                    target="_blank">
+                                    <img src="pictures/4-3.png" alt="урок 4-3">
+                                </a>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили четвертый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-5">
+                    <h1>📚 Урок 5</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет расчетов с поставщиками и
+                            подрядчиками, взаимозачеты </h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1dGxmGI_x1c3UuXboJPJM_ItbzsLar-2E/view"
+                                    target="_blank">
+                                    <img src="pictures/5.png" alt="урок 5">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>
+                                    По взаимозачетам в 2026 году. С 1 января 2023 г. на территории Республики Беларусь
+                                    при осуществлении предпринимательской деятельности в отношении всех товаров,
+                                    в том числе потребительских, запрещаются товарообменные операции без поступления в
+                                    установленном порядке денежных средств юридическому лицу, ИП(бартер, мена,
+                                    взаимозачет), за исключением:
+                                </p>
+                                <li> внешнеторговых операций;</li>
+                                <li> операции, определенные в перечнях облисполкомов и Минского горисполкома (ч.1 п.14
+                                    постановления № 713). </li>
+                                <p> Предоставить право облисполкомам и Минскому горисполкому определять перечни
+                                    товарообменных операций,
+                                    которые должны содержать предметы товарообменной операции (товары, работы, услуги),
+                                    а также наименования юридических лиц, между которыми могут осуществляться
+                                    товарообменные операции на основании соответствующего перечня.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили пятый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-6">
+                    <h1>📚 Урок 6</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет денежных средств:</h2> 
+                          <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет
+                            кассовых операций</h2>
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;"> Учет операций по расчетному
+                            счету.</h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1dwP9A1fygkaworNstAZQ3mUqIghbIJv-/view"
+                                    target="_blank">
+                                    <img src="pictures/6-1.png" alt="урок 6-1">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/10F8_7w3UXkY7rY6nPUpzz6rAElORtXyc/view"
+                                    target="_blank">
+                                    <img src="pictures/6-2.png" alt="урок 6-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red;">
+                                                                     
+                                    С 4 апреля 2026 года в Республике Беларусь вступило в силу изменения в Положении о
+                                    служебных командировках (согласно постановлению Совета Министров № 135 от 23 марта
+                                    2026 года),
+                                    которые касаются суточных, проживания:
+                                    <li> 1.Суточные (внутри РБ) <a style="font-style: normal !important;">Увеличение
+                                            суммы: Размер суточных при командировках внутри Беларуси вырастет с 12 до 13
+                                            рублей в сутки.</a></li>
+                                    <li> 2. Проживание (найм жилья) <a style="font-style: normal !important;">С 4 апреля
+                                            2026 года возмещение расходов на проживание в другом населенном пункте
+                                            производится только на основании подтверждающих документов (чеков, квитанций).</a></li>
+
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p style="line-height: 24px!important; color: #1e4b00;">
+                            Надо сделать самостоятельно работу, она находится у вас на электронной почте в шестом уроке
+                            - практическая работа - учёт денежных средств.<br>
+                            Надо правильно указать дебет кредит по 50 счёту, а потом по 51 счету.<br>
+                            Когда сделаете, открываете видео урок и проверяете. Ссылка на видео с домашним заданием ниже:
+                        </p>
+
+                        <a href="https://drive.google.com/file/d/1q1d81BKdT_nmmjeR11rWUmdwNBs5QEj6/view" target="_blank"
+                            style="color: #721c24; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 36px;">ДЗ</a>
+                        <hr>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили шестой урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-7">
+                    <h1>📚 Урок 7</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">"Бухгалтерский учет в
+                            розничной торговле"</h2>
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Учет операций по расчетному
+                            счету.</h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+                        <hr>
+                        <p class="lesNum">Урок 7-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1en8uLwJKB9dO0O-2cOXoirD36RMIyfGP/view"
+                                    target="_blank">
+                                    <img src="pictures/7.png" alt="урок 7">
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="lesNum">Урок 7-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1en8uLwJKB9dO0O-2cOXoirD36RMIyfGP/view"
+                                    target="_blank">
+                                    <img src="pictures/7.png" alt="урок 2-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red; font-size: 24px !important;">Урок 7-2 делать в программе 1С не
+                                    надо.</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили седьмой урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-8">
+                    <h1>📚 Урок 8</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">"Бухгалтерский учет в
+                            производстве"</h2>
+
+                        <p style="color: red;">Напоминаем, что работаем только в пределе 1 квартала 2026года. </p>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+                        <p class="lesNum">Урок 8-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1eKRPRWb34eWHsWJDIIB4AVTFLlo9ApRn/view"
+                                    target="_blank">
+                                    <img src="pictures/8.png" alt="урок 8-1">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p class="lesNum">Урок 8-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1oBW_fcQZwRX0kkT5ChdP8Q-I0XyZbfBx/view"
+                                    target="_blank">
+                                    <img src="pictures/8.png" alt="урок 8-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>В уроке 8-2 на видео мы будем продавать готовую продукцию ООО "Скиф", у вас такого
+                                    контрагента нет, поэтому вы продавайте ООО "Аромабелторг".
+                                    В конце видео будем показывать, как сделать не вручную, а автоматизировано
+                                    производство, белое платье в программе делать не надо.
+                                </p>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили восьмой урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-9">
+                    <h1>📚 Урок 9</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;"> "Учет заработной платы" </h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Расчет больничных и отпускных
+                        </h2>
+                        <hr>
+                        <p class="lesNum">Урок 9-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1vlehDM_aNxEL93_VZIiQQPtvBYGr1kjW/view"
+                                    target="_blank">
+                                    <img src="pictures/9.png" alt="урок 9">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>С 2 июня 2024 г. установлен новый порядок работы с личными делами работников.
+                                    Необходимость ведения личных дел работников негосударственной организации
+                                    определяется решением руководителя.
+                                    Должен быть издан приказ о полном прекращения ведения личных дел работников, или
+                                    частичного прекращения ведения личных дел работников.
+                                </p>
+                                <br>
+                                <p style="color: red;">Минимальная зарплата с 01.01.2026года повышена до Br858,00руб.
+                                </p><br>
+                                <p>С 1 марта 2026 года вступают в силу изменения в порядке начисления страховых взносов
+                                    в Белгосстрах для определенной категории руководителей.
+                                    Для руководителей (единственных участников) коммерческих организаций, которые
+                                    являются их собственниками или членами, иных руководителей коммерческих организаций,
+                                    устанавливается минимальная база для начисления страховых взносов. Новое правило:
+                                    Объектом для начисления взносов будут фактические выплаты, но не
+                                    ниже величины средней заработной платы работников в Республике Беларусь за
+                                    соответствующий месяц.
+                                </p>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p class="lesNum">Урок 9-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1m4k3NoVfQxsersDEBPT-9kQbv7lk2-Sa/view"
+                                    target="_blank">
+                                    <img src="pictures/9.png" alt="урок 9-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>С 18.08.2025 при перечислении заработной платы и приравненных к ней выплат,
+                                    необходимо
+                                    предоставить в банк платежное поручение на оплату взносов в ФСЗН либо справку о том,
+                                    что обязательства по взносам в ФСЗН исполнены в полном объеме, или отсутствуют.
+                                    При выплате авансов, премий и отпускных согласование с органами фонда не требуется.
+                                    <a style="color: brown;">Например ситуация, когда работодатель выплачивает зарплату,
+                                        а взносы внесены ранее. В этой ситуации надо согласовывать с ФСЗН.</a>
+                                    Пошаговая инструкция взаимодействия с органами Фонда на получение справки: <a
+                                        href="https://drive.google.com/file/d/1NZCBdhRlDBwXkFT7TOg9zocqwZWnnL3L/view"
+                                        target="_blank">ИНСТРУКЦИЯ</a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="lesNum">Урок 9-3</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1z7bllfv2Z_42yzGsx-G3xy4I9hEI9s6A/view?usp=drive_link"
+                                    target="_blank">
+                                    <img src="pictures/9.png" alt="урок 9-3">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>С 01.01.2023года изменилось среднемесячного количества календарных дней,
+                                    используемого при расчете отпускных и компенсации за неиспользованный отпуск, с 29,7
+                                    до 29,6 (п. 6, абз. 4 ч. 1 п. 10, ч. 2 п. 12 Инструкции N 47 (в новой редакции)).
+                                    Напомним, эта величина является
+                                    постоянной и применяется при расчете среднедневного заработка вне зависимости от
+                                    того, в каком году производится такой расчет.
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="lesNum">Урок 9-4</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1GrwrGns4qggEPI7BzgeftxbtpX_JxheK/view"
+                                    target="_blank">
+                                    <img src="pictures/9.png" alt="урок 9">
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Урок 9-5</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/17ywk_pkktMA9VNzKmB5n670wypNVE_Ik/view"
+                                    target="_blank">
+                                    <img src="pictures/9.png" alt="урок 9-5">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red; font-size: 24px !important;">Урок 9-5 делать в программе не надо.
+                                </p>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили девятый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-10">
+                    <h1>📚 Урок 10</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">"
+                            Учет операций по внешнеторговым договорам: импорт, экспорт"</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Покупка, продажа валюты</h2>
+                        <p style="color: red;">Ставим то же число и месяц, как на видео, но год у нас всегда будет
+                            текущий 2026г </p>
+                        <hr>
+                        <p>Урок 10-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1TaYi25zGZ0i1SxxZ5YKLvaYoCpEp_FJt/view"
+                                    target="_blank">
+                                    <img src="pictures/10.png" alt="урок 10-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>Инструкцию по заполнению заявления и ЭСЧФ при импорте, смотрите в файлах 10урока,
+                                    папка "Импорт".</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p>Урок 10-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1XBPxQOH_UxUdcPMRd1FagPktLYrCtCWe/view"
+                                    target="_blank">
+                                    <img src="pictures/10.png" alt="урок 2-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: brown;">С 1 июня 2026 года в России начала действовать система СПОТ
+                                    (Национальная
+                                    система подтверждения ожидания поставки товаров) для контроля автомобильных
+                                    грузоперевозок из стран ЕАЭС (Армения, Беларусь, Казахстан, Кыргызстан).
+                                </p>
+                                <p style="color: brown;">Оформление документов: Российский покупатель обязан заранее
+                                    сформировать в системе Федеральной
+                                    налоговой службы (ФНС) РФ документ о предстоящей поставке товаров
+                                </p>
+                                <p style="color: brown;">Требования к грузовикам: Водитель РБ при въезде на территорию
+                                    России должен предъявить данный документ (например, в виде QR-кода) должностному
+                                    лицу контролирующего органа.</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p style="margin-bottom: 0px !important; line-height: 28px;">
+                            Напомним, обязанность по сбору отходов товаров и упаковки возлагается (п. 1, 2 ст. 22 Закона
+                            N 271-З; п. 1, 3, 4 приложения 4-1 к постановлению N 388):
+                        </p>
+                        <li style="font-size: 20px;">поставщиков таких товаров (упаковки). К ним относятся юрлица и ИП,
+                            ввезшие на территорию Беларуси товары (упаковку как товар) из Перечня, включая
+                            поименованную в нем упаковку (пластмассовую (полимерную), стеклянную, комбинированную на
+                            основе бумаги и картона).
+                        </li>
+                        <hr>
+                        <p
+                            style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 28px;">
+                            До какого числа необходимо выполнить обязанность?
+                        </p>
+                        <p>
+                            Срок представления отчета, внесения платы и представления необходимых документов (при
+                            необходимости) –
+                            до последнего числа месяца, следующего за отчетным (календарным) кварталом.
+                        </p>
+                        <hr>
+                        <p
+                            style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 28px;">
+                            Как можно выполнить обязанность?
+                        </p>
+                        <li style="font-size: 20px !important;">
+                            Способ 1. Внесение платы. Необходимо заключить договор с Оператором, подать отчет о
+                            выполнении обязанности и внести плату. Сайт: <a href="https://vtoroperator.by/"
+                                target="_blank">ссылка</a>
+                        </li>
+                        <li style="font-size: 20px !important;">
+                            Способ 2. Организация собственной системы сбора отходов.
+                        </li>
+                        <p> <a href="https://docs.google.com/document/d/1Vz9Z0VjektoUQxfSKCN--HOchscWj2Hj/edit?rtpof=true&sd=true&tab=t.0"
+                                target="_blank">
+                                ПЕРЕЧЕНЬ ТОВАРОВ И УПАКОВКИ, ПРИ ВВОЗЕ в РБ
+                            </a></p>
+                        <p> <a href="https://docs.google.com/document/d/13yjKBL3R_lywLz-P4b9ST4nIVcit-tul/edit?rtpof=true&sd=true&tab=t.0"
+                                target="_blank">
+                                ИНСТРУКЦИЯ ПО РАБОТЕ НА САЙТЕ vtoroperator.by
+                            </a></p>
+                        <hr>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили десятый урок, если у Вас так же, как у нас переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-11">
+                    <h1>📚 Урок 11</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Формирование финансового
+                            результата, баланса</h2>
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Начисление взносов в ФСЗН,
+                            Белгосстрах</h2>
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Фонд-4, ПУ-1,ПУ-2, ПУ-3</h2>
+
+                        <hr>
+
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/16xSLgjhBdQVo3DI6yt4id1sTg3Vskacg/view"
+                                    target="_blank">
+                                    <img src="pictures/11-1.png" alt="урок 11-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>С 01.01.2026 года не будет действовать льготная ставка 6% при налогообложении
+                                    дивидендов.
+                                  <br> Установлены периодичности выплаты дивидендов:
+                                </p>
+                                <li>только по итогам отчетных периодов (квартал, полугодие, 9 месяцев, год);</li>
+                                <p>установление срока принятия решения о распределении прибыли на выплату дивидендов:
+                                </p>
+                                <li>не позднее 3 месяцев после окончания соответствующего периода;</li>
+                                <p>установление срока выплаты дивидендов: </p>
+                                <li>в течение 60 календарных дней с даты принятия решения, если иной срок не установлен самим решением, или уставом;</li>
+                                
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p>Урок 11-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1M4_f5QcLfHN64fl_kbG-CjBiIV-W9OLV/view"
+                                    target="_blank">
+                                    <img src="pictures/11.png" alt="урок 11-2">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <p>Урок 11-3</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1FyCiRGUHV4Y_uJAo9sGEtyQHfB4APiyH/view"
+                                    target="_blank">
+                                    <img src="pictures/11.png" alt="урок 11-3">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="color: red;">ПУ-2 за один квартал на одного сотрудника, отминяет данные
+                                    предыдущей ПУ-2,
+                                    Поэтому мы дублируем данные и добавляем новые. Если сотрудника приняли в одном
+                                    квартале, а например увольняете в другие периоды,
+                                    то дублировать предыдушие данные не надо.
+                                </p><br>
+                                <p style="color: red;">Пояснительная записка П3 за 26 год надо подать до 28 февраля 27
+                                    года.</p><br>
+                                <p> Срок подачи формы ПУ-1 С 07.01.2023 ее нужно подать не позднее 2 календарных дней со
+                                    дня принятия указанного лица на работу. С 8 января 2026 года форму ПУ-1 (тип формы — «изменение анкетных данных») больше не нужно подавать на работников, у которых в документе, удостоверяющем личность, есть идентификационный номер.<br>
+                                    ПУ-2 при приеме на работу в течении 5-ти календарных дней, с 01.01.2026 при
+                                    увольнении не позднеее завтрашнего дня после увальнения.
+                                </p>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Урок 11-4(Белгосстрах)</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1zBKCC8JJQeooS4aIG10JxStAlII8PVBm/view"
+                                    target="_blank">
+                                    <img src="pictures/11.png" alt="урок 11-4">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p>С 1 марта 2026 года вступают в силу изменения в порядке начисления страховых
+                                    взносов в Белгосстрах для определенной категории руководителей.
+                                    Для руководителей (единственных участников) коммерческих организаций, которые
+                                    являются их собственниками или членами, устанавливается минимальная база для
+                                    начисления страховых взносов.
+                                    Новое правило: Объектом для начисления взносов будут фактические выплаты, но не
+                                    ниже величины средней заработной платы работников в Республике Беларусь за
+                                    соответствующий месяц.
+                                </p>
+                                <p>Ссылка, где можно увидить среднюю ЗП по РБ за каждый месяц, но не раньше 21-24 числа
+                                    следующего месяца:
+                                    <a href="https://www.belstat.gov.by/ofitsialnaya-statistika/realny-sector-ekonomiki/stoimost-rabochey-sily/operativnye-dannye/o-nachislennoy-sredney-zarabotnoy-plate-rabotnikov/"
+                                        target="_blank"> О начисленной средней заработной плате работников
+                                    </a>
+                                </p>
+                                <p>Напоминаю, что последняя дата перечисления взносов до 25 числа после отчетного
+                                    квартала.</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю Вас с балансом!!!</p>
+                        <p style="font-size: 20px;">Вы закончили одинадцатый урок.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-12">
+                    <h1>📚 Урок 12</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Учет расчетов с бюджетом.</h2>
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">НДС. Работа с ЭСЧФ. </h2>
+                        <h2 style="color: #1e4b00; font-size: 30px; margin-bottom: 16px;">Работа с порталом ИМНС
+                            «Электронное декларирование»</h2>
+                        <p>С 2024 года деклараций по НДС стало две.
+                            Вторую часть декларации по ввозному НДС с ЕАЭС вынесли в отдельную декларацию, но
+                            заполняется аналогично, как мы заполняли II Часть.
+                        </p>
+                        <hr>
+                        <p>НДС-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1ogPkCXzcHr_baXZ8tXNOPXYgxb35A6Bo/view"
+                                    target="_blank">
+                                    <img src="pictures/12-1.png" alt="урок 12-1">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                                <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+                                    Изменения в разделе I декларации по НДС c 01.01.2026года:
+                                </p>
+                                <li> В разделе I у всех строк, кроме строк 1-4 и 13, изменилась нумерация</li>
+                                <li>Строка по операциям, НДС 0%, переместилась с позиции 6 на позицию 7</li>
+                                <li>Строка по операциям, освобождаемым от НДС, переместилась с позиции 8 на позицию 9
+                                </li>
+                                <li>Строка по операциям, при электронной дистанционной продаже товара, переместилась с
+                                    позиции 9 на 11</li>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p>НДС-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1L7ssdVJ1T3KZF4mWtq-5fUF4XagF8y6y/view"
+                                    target="_blank">
+                                    <img src="pictures/12-1.png" alt="урок 12-2">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p>НДС-3</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1pLFy3X18CNbWhivMNM5lAhrFStBTqz2E/view"
+                                    target="_blank">
+                                    <img src="pictures/12-1.png" alt="урок 12-3">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p>НДС-4</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1pLFy3X18CNbWhivMNM5lAhrFStBTqz2E/view"
+                                    target="_blank">
+                                    <img src="pictures/12-1.png" alt="урок 12-4">
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <p
+                            style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 24px">
+                            Новая форма декларации по НДС и инструкция по заполнению ‒ 2026:
+                            <a href="https://drive.google.com/file/d/1Dz12EB0jk8U5-gNJsPqJoLwhaOvY9HwD/view"
+                                target="_blank" style="margin-left: 20px;">ссылка</a>
+                        </p>
+                        <p
+                            style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 24px">
+                            Подписание ЭСЧФ и управление вычетами:
+                            <a href="https://yandex.by/video/preview/8941820532278454422" target="_blank"
+                                style="margin-left: 20px;">урок</a>
+                        </p>
+                        <p
+                            style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 24px">
+                            Камеральный контроль на портале:
+                            <a href="https://www.youtube.com/watch?v=jRI4ByvB624" target="_blank"
+                                style="margin-left: 20px;">урок</a>
+                        </p>
+
+                        <p style="color: red; font-size: 24px;">Изменения по заполнению ЭСЧФ для контроля анализируемых
+                            сделок </p>
+                        <p style="color: red; font-size: 24px;">постановление МНС от 31.03.2026 № 14</p>
+                        <p>1) раздел 2 «Реквизиты поставщика» формы ЭСЧФ дополнен признаками:</p>
+                        <li>- 6.5. «Физическое лицо»;</li>
+                        <li>- 6.6. «Заём»;</li>
+                        <p>2) в разделе 3 «Реквизиты получателя»:</p>
+                        <li>- признаку «Продажа физическому лицу» присвоен номер 15.5;</li>
+                        <li>- добавлен признак 15.6. «Заём».</li>
+                        <p>Код 6499 в графе 3.2 графы 3 раздела 6 формы ЭСЧФ указывается только при получении
+                            (предоставлении) займа</p>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+                        <p style="font-size: 20px;">Вы закончили двенадцатый урок, если у Вас так же, как у нас
+                            переходите
+                            смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-13">
+                    <h1>📚 Урок 13</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Подоходный налог. УСН. Налог на прибыль.</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Работа с порталом ИМНС «Электронное декларирование».</h2>
+
+                        <hr>
+                        
+
+                         <p>Урок 13-1</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                               <a href="https://drive.google.com/file/d/17ab_NaD84-_ggH0m4MNkjFTwRJZYMV3u/view" target="_blank">
+                                    <img src="pictures/13-3.png" alt="урок 13-3">
+                                </a>
+                            </div>
+                          </div>
+
+                        <p>Основные ставки подоходного налога на 2026 год:</p>
+                        <p>Для доходов по трудовым договорам (зарплата, премии) и дивидендов установлены следующие ставки:</p>
+                        <li>13% — если суммарный доход с начала года не превышает 350 000 бел. руб..</li>
+                        <li>25% — для части дохода в диапазоне от 350 000 до 600 000 бел. руб. включительно.</li>
+                        <li>30% — для части дохода, превышающей 600 000 бел. руб..</li>
+                        <p>Важные нюансы для руководителя:</p>
+                        <li>Порядок удержания: Организация как налоговый агент обязана самостоятельно отслеживать порог в 350 000 руб. 
+                            и удерживать налог по повышенной ставке (25% или 30%) в момент фактической выплаты дохода, превышающего лимит.
+                        </li>
+                        <hr>
+                        <p>Урок 13-2</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1VVGXWZBw9u9e4_KhZ0Ob8H-N2tVOddkH/view"
+                                    target="_blank">
+                                    <img src="pictures/13-2.png" alt="урок 13-2">
+                                </a>
+                            </div>
+                            <div class="text-right-col">
+                          <p>С 01.01.2026 года изменились сроки подачи сведений о доходах. А также будут изменения с 01.01.2027 года: </p>
+
+                                <p>
+                                    <a href="https://drive.google.com/file/d/1JsrpqEj1fA768Nh0OrrgspT2V1ESrRMu/view?usp=sharing" target="_blank" style="font-size: 24px;">Сведения о доходах физлиц</a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Урок 13-3</p>
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1qZypqE-cIQHOMkYIYPwYy6-UBvwMem1I/view"
+                                    target="_blank">
+                                    <img src="pictures/13-4.png" alt="урок 13-4">
+                                </a>
+                            </div>
+                          </div>
+                          <hr>
+                          <p>Урок 13-4</p>
+                          <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1h6ouHwPU83J4BPHYXzUfO6r-44eEOfhy/view"
+                                    target="_blank">
+                                                                   <img src="pictures/13-3.png" alt="урок 13-3">
+                                </a>
+                            </div>
+                          </div>
+                          <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+ <p style="font-size: 20px;">Вы закончили тринадцатый урок, если у Вас так же, как у нас переходите
+смело к следующему уроку.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-14">
+                    <h1>📚 Урок 14</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Налог на недвижимость. Налог на землю.</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Бухгалтерская отчетность</h2>
+                        <h2 style="color: #1e4b00; font-size: 40px; margin-bottom: 16px;">Работа с порталом ИМНС «Электронное декларирование»</h2>
+                        <hr>
+
+                      <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1T8JJoeRqqY2Y046KerEP2hQOt4j_RGqK/view"
+                                    target="_blank">
+                                    <img src="pictures/14-1.png" alt="урок 14-1">
+                                </a>
+                            </div>
+                        </div>
+
+                        
+                        <p>Для организаций  в 2026 году коэффициент 2 к ставкам налога на недвижимость не изменился и продолжает действовать.
+                         Данный коэффициент установлен решением Минского городского Совета депутатов № 255.   
+                        </p>
+
+                        <hr>
+                        
+                        <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1IIviWWbgcgqmDGWmd68QK8z5s86NstyX/view"
+                                    target="_blank">
+                                    <img src="pictures/14-2.png" alt="урок 14-2">
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                   
+                   <div class="image-text-row">
+                            <div class="image-left-col">
+                                <a href="https://drive.google.com/file/d/1fyqQbhtC3lJx0_qvccfbVEIFYNLHA_bp/view"
+                                    target="_blank">
+                                    <img src="pictures/14-3.png" alt="урок 14-3">
+                                </a>
+                            </div>
+                        </div>
+                       <hr>
+
+
+                        <p style="margin-top: 40px; color: brown;">О представлении в 2026 году налоговых деклараций (расчетов) по земельному налогу</p>
+                        <p><br>
+                            Земельный налог. С 2023 года начинает применяться система префайлинга по земельному налогу,т.е. предварительное заполнение налоговой декларации (расчета) по земельному налогу налоговым органом 
+                            на основании имеющихся в налоговых органах сведений.
+                            Налоговый орган в 2026 году, на основании имеющихся у него сведений будет производить предварительное заполнение налоговой декларации (расчета) по земельному налогу
+                             за 2026 г. и направлять ее 30.01.2027 плательщикам-организациям для подписания ЭЦП и  представления такой налоговой декларации  в налоговый орган не позднее 20.02.2027г.
+                        </p>
+                        <p>
+                            Установлен на 2026 г. порядок уплаты авансовых платежей по земельному налогу.
+                            В 2026 г. авансовые платежи будут уплачиваться в размере 1/4 суммы земельного налога, 
+                            исчисленного за предыдущий налоговый период без применения повышающего коэффициента 3 и с учетом уменьшения по выбывшим земельным участкам.
+                            Сроки уплаты — не позднее 22.02.2026, 22.05.2026, 22.08.2026, 22.11.2026. 
+                            Такой порядок уплаты авансов не распространяется на бюджетные организации, плательщиков единого налога для сельхозпроизводителей.
+                        </p>
+                        <p>
+                            Окончательный расчет по земельному налогу по итогам истекшего налогового периода  производится организациями не позднее 22 февраля года, следующего за истекшим налоговым периодом (ч. 2 п. 6 ст. 244 НК).
+                            В случае если суммы уплаченных авансовых платежей превышают сумму исчисленного земельного налога за налоговый период,  излишне уплаченные суммы подлежат зачету либо возврату плательщику в порядке, установленном ст. 66 НК (ч. 9 п. 6 ст. 244 НК).
+                        </p>
+
+                        <p>
+                            По состоянию на 01.01.2026 у организации если нет объектов обложения земельным налогом. В 2026 г. в пользование получен один земельный участок, 
+                            который облагается земельным налогом. В течение 2026 г. организация не уплачивает авансовые платежи по земельному налогу (абз. 4 ч. 3 п. 6 ст. 244 НК).
+                        </p>
+
+                        <p><a href="https://drive.google.com/file/d/19Sl-fle1MspY1A4fNFS0pgosMeiymsy3/view" target="_blank" style="color: brown; font-size: 24px">
+                            Пошаговая инструкция подачи декларации
+                        </a> </p>
+                        <hr>
+                        <p style="font-size: 30px !important; color: red;">Поздравляю!!! </p>
+ <p style="font-size: 20px;">Вы закончили четырнадцатый урок.</p>
+                    </div>
+                </div>
+
+                <div class="lesson-content" id="lesson-15">
+                    <h1>📚 Урок 15</h1>
+                    <div class="content-body">
+                        <h2 style="color: #1e4b00; font-size: 48px; margin-bottom: 16px;">Практическая работа</h2>
+
+                        <p>Практическая работа по желанию, кто хочет себя проверить и  самостоятельно выполнить работу за второй квартал, и свести баланс.
+                            По возможности делайте самостоятельно! Видео только, чтобы сориентироваться, оно не полное.
+                        </p>
+
+                        <hr>
+                        <p>
+                            <a href="https://docs.google.com/document/d/1_gPxqE8AZsUE0VQLEfDoX9TJbPkMZ1qPwQETNSOe3Hc/edit?tab=t.0" target="_blank" style="font-size: 24px;">
+                                ТЕСТ
+                            </a></p>
+
+
+                        <p>Видео только, чтобы сориентироваться, оно не полное. <a href="https://drive.google.com/file/d/13hj8IuYFmugXAzMIar3Wj6eIl5A-Fo-f/view">Видео 15 урок</a></p>
+                    </div>
+                    <hr>
+                    <p style="font-size: 30px !important; color: red; margin-top: 40px;">Поздравляю!!! </p>
+ <p style="font-size: 20px;">Вы закончили курс</p>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
