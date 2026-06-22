@@ -1,7 +1,7 @@
 // ============================================
 // НАСТРОЙКИ - ИЗМЕНИТЕ ПОД СЕБЯ
 // ============================================
-const GIST_ID = 'ba818e2c9b5deda9a6d92d4a5129490866e66951';
+const GIST_ID = '471605299a8d1e248246f60ce35d2d0fd25e3562';
 const GIST_FILENAME = 'status.txt';
 const REDIRECT_URL = 'pc/main.html'; 
 const SESSION_DURATION = 2 * 60 * 60 * 1000; // 2 часа
