@@ -50,12 +50,12 @@ function generateToken() {
 // ФУНКЦИЯ ПРОВЕРКИ ДОСТУПА
 // ============================================
 async function handleLogin() {
-    // Получаем фамилию, приводим к нижнему регистру и обрезаем пробелы
+    // Получаем пароль, приводим к нижнему регистру и обрезаем пробелы
     const surname = surnameInput.value.trim().toLowerCase();
     
     // Валидация
     if (!surname) {
-        showMessage('Пожалуйста, введите вашу фамилию', 'error');
+        showMessage('Пожалуйста, введите ваш пароль', 'error');
         return;
     }
 
@@ -88,18 +88,18 @@ async function handleLogin() {
         
         console.log('Загружено записей:', lines.length);
         
-        // Ищем фамилию в файле
+        // Ищем пароль в файле
         let found = false;
         let status = null;
         
         for (const line of lines) {
-            // Разбиваем строку на части (фамилия и статус через пробел)
+            // Разбиваем строку на части (пароль и статус через пробел)
             const parts = line.split(/\s+/);
             if (parts.length >= 2) {
                 const fileSurname = parts[0].toLowerCase();
                 const fileStatus = parts[1];
                 
-                // Проверяем совпадение фамилии
+                // Проверяем совпадение пароля
                 if (fileSurname === surname) {
                     found = true;
                     status = fileStatus;
@@ -110,7 +110,7 @@ async function handleLogin() {
         
         // Обработка результата
         if (!found) {
-            showMessage('❌ Фамилия не найдена в списке доступа', 'error');
+            showMessage('❌ пароль не найдена в списке доступа', 'error');
             setLoading(false);
             return;
         }
