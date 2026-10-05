@@ -27,9 +27,9 @@ function validateAccess() {
     const loginTime = parseInt(sessionStorage.getItem('login_time') || '0');
     const currentTime = Date.now();
     
-    // Проверка 1: есть ли фамилия
+    // Проверка 1: есть ли пароль
     if (!surname) {
-        console.log('❌ Нет фамилии в сессии');
+        console.log('❌ Нет пароля в сессии');
         return false;
     }
     
